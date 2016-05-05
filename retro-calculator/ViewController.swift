@@ -42,13 +42,23 @@ class ViewController: UIViewController {
             print(err.debugDescription)
         }
         
-        outputLabel.text = ""
+        outputLabel.text = "0"
     }
     
     @IBAction func numberPressed(btn: UIButton!) {
         playButtonSound()
         runningNumber += "\(btn.tag)"
         outputLabel.text = runningNumber
+    }
+    
+    @IBAction func onClearButtonPressed(sender: AnyObject) {
+        playButtonSound()
+        outputLabel.text = "0"
+        runningNumber = ""
+        leftValStr = ""
+        rightValStr = ""
+        currentOperation = .Empty
+        result = ""
     }
     
     @IBAction func onDivideButtonPressed(sender: AnyObject) {
@@ -90,7 +100,7 @@ class ViewController: UIViewController {
                 case .Subtract:
                     result = "\(Double(leftValStr)! - Double(rightValStr)!)"
                 default:
-                    result = ""
+                    result = "Err"
                 }
                 
                 leftValStr = result
